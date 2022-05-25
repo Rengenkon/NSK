@@ -219,8 +219,8 @@ public:
             else {
                 s += "-";
             }
-            s += "\n";
         }
+        s += "\n";
         return s;
     }
 
@@ -256,6 +256,7 @@ public:
             s2 += alig(s1 + i);
             s2 += "|";
         }
+        s2 += "\n";
         return s2;
     }
 
@@ -327,7 +328,7 @@ private:
         std::cout << t->line(a);
         std::cout << t->separator();
 
-        delete a;
+        delete [] a;
         ID++;
     }
 
@@ -343,7 +344,7 @@ private:
         *OUT << t->line(a);
         *OUT << t->separator();
 
-        delete a;
+        delete [] a;
         ID++;
     }
 
@@ -373,6 +374,7 @@ public:
             int count = 0;
             int start = -1, end = -1;
             for (int i = 0; i < s.length(); i++) {
+                int ghfs = 1;
                 if (s[i] != ' ' and s[i] != '|') {
                     if (start == -1) {
                         start = i;
@@ -400,6 +402,7 @@ public:
             add(data + 1, data + 2, std::stoi(data[3]));
         }
 
+        int tas = 1;
         IN->close();
         OUT = new std::ofstream(source);
     }
@@ -440,22 +443,35 @@ public:
         OUT->close();
     }
 
+
     void select() {
         int a;
-        std::cout << "1 - Показать решение первой задачи\n2 -Показать решение второй задачи\n3 - Отобразить список прямо\n4 - Отобразить список обратно\n5 - Сохранить список прямо\n6 - Сохранить список обратно";
-        std::cin >> a;
+        table sep(20, 1);
+        sep.separator();
+        std::cout << sep.separator() <<
+            "1 - Показать решение первой задачи\n2 -Показать решение второй задачи\n3 - Отобразить список прямо\n4 - Отобразить список обратно\n5 - Сохранить список прямо\n6 - Сохранить список обратно\n"
+            << sep.separator();
+        //std::cin >> a;
+        a = 6;
         switch (a)
         {
         case 1:
 
+            select();
+            break;
+        case 2:
+
+            select();
             break;
         case 3:
             console = true;
             Fwrite();
+            select();
             break;
         case 4:
             console = true;
             Rwrite();
+            select();
             break;
         case 5:
             console = false;
